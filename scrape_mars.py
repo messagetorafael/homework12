@@ -54,11 +54,12 @@ def scrape():
         except AttributeError as e:
             print(e)
 
-
+   
     ### JPL Mars Space Images - Featured Image
     
     # Visit URL - 1st page
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
+    featured_image_url = "show me if wrong"
     browser.visit(url)
     time.sleep(1)
 
@@ -67,6 +68,8 @@ def scrape():
     soup = BeautifulSoup(html, "html.parser")
 
     # Get the resuts for searched data
+    results = soup.find_all("footer")
+   
     for result in results:
         # Error handling
         try:
@@ -100,21 +103,22 @@ def scrape():
         # Error handling
         try:
             # Identify and return title of listing
-            featured_image_url = result.a['href']
+            featured_image_url1 = result.a['href']
             # Print results only if available
-            if (featured_image_url):
+            if (featured_image_url1):
                 print('-------------')
-                print(f'{featured_image_url}')
+                print(f'{featured_image_url1}')
 
         except AttributeError as e:
             print(e)
         
         except KeyError as bug:
             print(bug)
-        
-    featured_image_url ="https://www.jpl.nasa.gov" + featured_image_url
 
-    print(featured_image_url)
+    base_url = "https://www.jpl.nasa.gov"        
+    featured_image_url2 = base_url + featured_image_url1
+
+    print(featured_image_url2)
 
     ### Mars Weather
     
@@ -151,7 +155,8 @@ def scrape():
     df.columns = ['Mars Planet Profile', 'Values']
     df.set_index("Mars Planet Profile", inplace=True)
     html_table = df.to_html()
-
+    html_table = html_table.replace('\n', '')
+    
 
     ### Mars Hemispheres
     
@@ -220,16 +225,17 @@ def scrape():
     
     # Store data in a dictionary
     mars_data = {
-
         "news_title": news_title,
         "news_paragraph": news_paragraph,
-        "featured_image_url": featured_image_url,
+        "featured_image_url": featured_image_url2,
         "mars_weather": mars_weather,
         "html_table": html_table,
         "hemisphere_image_urls":hemisphere_image_urls
     }
 
     # Close the browser after scraping
+    print("closing the browser scrape window in 5 seconds...")
+    time.sleep(5)
     browser.quit()
 
     # Return results
