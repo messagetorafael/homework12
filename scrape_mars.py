@@ -19,7 +19,10 @@ def init_browser():
 
 
 def scrape():
+
     browser = init_browser()
+    print('-------------')
+    print('Starting the browser')
 
     ### NASA Mars News
     
@@ -78,6 +81,7 @@ def scrape():
         # Print results only if not empty
             if (featured_image_url):
                 print('-------------')
+                print('Featured Image URL')
                 print(f'{featured_image_url}')
 
         except AttributeError as e:
@@ -118,6 +122,7 @@ def scrape():
     base_url = "https://www.jpl.nasa.gov"        
     featured_image_url2 = base_url + featured_image_url1
 
+    print('-------------')
     print(featured_image_url2)
 
     ### Mars Weather
@@ -134,6 +139,9 @@ def scrape():
     # Get the resuts for searched data
     results = soup.find_all(class_="js-tweet-text-container")
     mars_weather = results[0].p.text
+
+    print('-------------')
+    print('Mars Weather')
     print(mars_weather)
     
     
@@ -154,9 +162,11 @@ def scrape():
     df = tables[0]
     df.columns = ['Mars Planet Profile', 'Values']
     df.set_index("Mars Planet Profile", inplace=True)
-    html_table = df.to_html()
+    html_table = df.to_html(escape=False,classes = 'table')
     html_table = html_table.replace('\n', '')
-    
+    print('-------------')
+    print('Mars Facts')
+    print (html_table)
 
     ### Mars Hemispheres
     
@@ -188,6 +198,7 @@ def scrape():
             if (image_url1 and hemisphere.text != ''):
                 
                 print('-------------')
+                print('Mars Hemispheres')
                 print(f'{title}')
                 print(f'{image_url1}')
                 print(base_url + str(image_url1))
@@ -204,7 +215,7 @@ def scrape():
                 # Get the results for searched data, 2nd layer/page
                 image_url = soup.find_all(target='_blank')
                 image_url = image_url[0]['href']
-                   
+                print('-------------')         
                 print(f'{image_url}')
 
         
@@ -232,6 +243,10 @@ def scrape():
         "html_table": html_table,
         "hemisphere_image_urls":hemisphere_image_urls
     }
+
+    print('-------------')
+    print('Database Dictionary')
+    print(mars_data)
 
     # Close the browser after scraping
     print("closing the browser scrape window in 5 seconds...")

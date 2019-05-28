@@ -1,64 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--  Page title--> 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>HW12-Mars Scrape</title>
+
+  <!--  Import bootstrap      --> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
+
+  <!--  Header      -->     
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <strong><h1>Mission to Mars</h1></strong>
-      <strong><p>Student: Rafael Santos</p></strong>
+      <strong><p><h1>Student: Rafael Santos</h1></p></strong>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Update by Scraping New Data!</a></p>
     </div>
-        <h2><strong>Latest Mars News:</strong></h2>
-        <h3>{{mars.news_title}}</h3>
-        <h3>{{mars.news_news_paragraph}}</h3>
+
+  <!--  Latest Mars News -->         
+    <div>
+      <h2><strong>Latest Mars News:</strong></h2>
+      <h2>{{mars.news_title}}</h2>
+      <h2>{{mars.news_paragraph}}</h2>
+    </div>
+    
     <br>
 
-    
+  <!--  Current Weather-->             
     <div>
-        <h2><strong>Current Weather:</h2></strong>
-        <h2>{{mars.mars_weather}}</h2>
+       <h2><strong>Current Weather:</h2></strong>
+       <h2>{{mars.mars_weather}}</h2>
     </div>            
     <br>
 
+  <!--  Featured image -->                 
     <div>
-        <h2><strong>Featured Mars Image:</strong></h2>
-        <img src="{{mars.featured_image_url}}" alt="Featured Image">
+       <h2><strong>Featured Mars Image:</strong></h2>
+       <img src="{{mars.featured_image_url}}" alt="Featured Image">
     </div>
     <br>
 
-      
+  <!--  MARS FACTS       --> 
     <div>
        <h2><strong>Mars Facts:</strong></h2> 
-       <p>{{mars.html_table}}</p>
-       <br>
-       <br>
-       <br>
-       <table class ="table" >
-        {{ mars.html_table}}
-       </table>
-       <br>
-       <br>
+       
+       <script>{{mars.html_table}}</script>
+      
+       {{mars.html_table}}
 
-       <h2>{{mars.html_table}}</h2>
-       <p><a class="btn btn-primary btn-lg" href="table.html" role="button">Test!</a></p>
-       <link href = 'table.html'>
-      </div>
+       {{mars.html_table2}}
+    </div>
+
+    <div w3-include-html = 'table.html'> 
+    </div>
+    
     <br>
 
   </div>
-   
+  
+  <!--  Mars Hemispheres Images -->             
+  
   <div class="container-fluid">
     <div class="jumbotron text-center">
       
-    </div>
         <h2><strong>Mars Hemispheres:</strong></h2>
         <br>
         <br>
@@ -76,10 +85,10 @@
         <br>
         <h3><strong> {{mars.hemisphere_image_urls[3].title}}</strong></h3>
         <img src="{{mars.hemisphere_image_urls[3].img_url}}" alt="Hemisphere images 4">
+    
+    </div>
 
   </div>
-
-  
 
 </body>
 
