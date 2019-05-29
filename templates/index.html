@@ -25,8 +25,8 @@
   <!--  Latest Mars News -->         
     <div>
       <h2><strong>Latest Mars News:</strong></h2>
-      <h2>{{mars.news_title}}</h2>
-      <h2>{{mars.news_paragraph}}</h2>
+      <h3>{{mars.news_title}}</h3>
+      <h3>{{mars.news_paragraph}}</h3>
     </div>
     
     <br>
@@ -34,7 +34,7 @@
   <!--  Current Weather-->             
     <div>
        <h2><strong>Current Weather:</h2></strong>
-       <h2>{{mars.mars_weather}}</h2>
+       <h3>{{mars.mars_weather}}</h3>
     </div>            
     <br>
 
@@ -48,17 +48,10 @@
   <!--  MARS FACTS       --> 
     <div>
        <h2><strong>Mars Facts:</strong></h2> 
-       
-       <script>{{mars.html_table}}</script>
-      
-       {{mars.html_table}}
+          
+       {{mars.html_table|safe}}
 
-       {{mars.html_table2}}
     </div>
-
-    <div w3-include-html = 'table.html'> 
-    </div>
-    
     <br>
 
   </div>
